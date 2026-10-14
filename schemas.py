@@ -1,7 +1,6 @@
 from enum import Enum
 from typing import Optional
-
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Outcome(str, Enum):
@@ -35,8 +34,17 @@ class Result(BaseModel):
 
 class ReadResult(BaseModel):
     text: str = ""
-    method: str = "none"  # pdf_text, ocr or none
+    method: str = "none"
     status: str
     needs_review: bool
-    detail: str = ""  # Must not contain document text
+    detail: str = ""
     pages: int = 0
+
+
+class ExtractResult(BaseModel):
+    fields: Fields = Field(default_factory=Fields)
+    evidence: dict[str, str] = Field(default_factory=dict)
+    status: str
+    needs_review: bool
+    detail: str = ""
+    dropped_fields: list[str] = Field(default_factory=list)

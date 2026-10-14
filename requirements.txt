@@ -3,3 +3,4 @@ pydantic
 pymupdf
 python-dotenv
 pytest
+pillow

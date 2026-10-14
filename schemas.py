@@ -1,5 +1,6 @@
 from enum import Enum
 from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -30,3 +31,12 @@ class Result(BaseModel):
     reasons: list[str]
     review_required: bool
     rule_version: str = "v0.2"
+
+
+class ReadResult(BaseModel):
+    text: str = ""
+    method: str = "none"  # pdf_text, ocr or none
+    status: str
+    needs_review: bool
+    detail: str = ""  # Must not contain document text
+    pages: int = 0

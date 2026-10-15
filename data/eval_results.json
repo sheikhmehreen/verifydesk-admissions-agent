@@ -1,0 +1,316 @@
+{
+  "summary": {
+    "cases": 20,
+    "outcome_correct": "20/20",
+    "review_flag_correct": "20/20",
+    "false_passes": 0,
+    "uncertain_cases_routed_to_review": "7/7",
+    "field_accuracy": "203/203",
+    "docs_with_all_fields_correct": "55/55",
+    "unexpected_values_extracted": 0,
+    "document_statuses": {
+      "ok": 53,
+      "missing_fields": 2,
+      "insufficient_text": 3
+    },
+    "avg_seconds_per_case_incl_pacing": 18.8
+  },
+  "cases": [
+    {
+      "case_id": 1,
+      "expected_outcome": "PASS",
+      "got_outcome": "PASS",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 2,
+      "expected_outcome": "PASS",
+      "got_outcome": "PASS",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 3,
+      "expected_outcome": "PASS",
+      "got_outcome": "PASS",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 4,
+      "expected_outcome": "PASS",
+      "got_outcome": "PASS",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 5,
+      "expected_outcome": "PASS",
+      "got_outcome": "PASS",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 6,
+      "expected_outcome": "PASS",
+      "got_outcome": "PASS",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 7,
+      "expected_outcome": "FAIL",
+      "got_outcome": "FAIL",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [
+        "CGPA_BELOW_MIN"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 8,
+      "expected_outcome": "FAIL",
+      "got_outcome": "FAIL",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [
+        "CGPA_BELOW_MIN"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 9,
+      "expected_outcome": "FAIL",
+      "got_outcome": "FAIL",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [
+        "EDUCATION_BELOW_MIN"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 10,
+      "expected_outcome": "FAIL",
+      "got_outcome": "FAIL",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [
+        "ID_INVALID"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 11,
+      "expected_outcome": "FAIL",
+      "got_outcome": "FAIL",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [
+        "MISSING_DOCUMENT:degree"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok"
+      }
+    },
+    {
+      "case_id": 12,
+      "expected_outcome": "FAIL",
+      "got_outcome": "FAIL",
+      "expected_review": false,
+      "got_review": false,
+      "reasons": [
+        "MISSING_DOCUMENT:id_card"
+      ],
+      "doc_statuses": {
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 13,
+      "expected_outcome": "NEEDS_REVIEW",
+      "got_outcome": "NEEDS_REVIEW",
+      "expected_review": true,
+      "got_review": true,
+      "reasons": [
+        "CGPA_UNREADABLE",
+        "PROCESSING_ISSUE:transcript:missing_fields"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "missing_fields",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 14,
+      "expected_outcome": "NEEDS_REVIEW",
+      "got_outcome": "NEEDS_REVIEW",
+      "expected_review": true,
+      "got_review": true,
+      "reasons": [
+        "YEARS_UNREADABLE",
+        "PROCESSING_ISSUE:transcript:missing_fields"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "missing_fields",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 15,
+      "expected_outcome": "NEEDS_REVIEW",
+      "got_outcome": "NEEDS_REVIEW",
+      "expected_review": true,
+      "got_review": true,
+      "reasons": [
+        "NAME_MISMATCH"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 16,
+      "expected_outcome": "NEEDS_REVIEW",
+      "got_outcome": "NEEDS_REVIEW",
+      "expected_review": true,
+      "got_review": true,
+      "reasons": [
+        "NAME_MISMATCH"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 17,
+      "expected_outcome": "NEEDS_REVIEW",
+      "got_outcome": "NEEDS_REVIEW",
+      "expected_review": true,
+      "got_review": true,
+      "reasons": [
+        "NAME_UNREADABLE",
+        "ID_UNREADABLE",
+        "PROCESSING_ISSUE:id_card:insufficient_text"
+      ],
+      "doc_statuses": {
+        "id_card": "insufficient_text",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 18,
+      "expected_outcome": "NEEDS_REVIEW",
+      "got_outcome": "NEEDS_REVIEW",
+      "expected_review": true,
+      "got_review": true,
+      "reasons": [
+        "YEARS_UNREADABLE",
+        "CGPA_UNREADABLE",
+        "NAME_UNREADABLE",
+        "PROCESSING_ISSUE:transcript:insufficient_text"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "insufficient_text",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 19,
+      "expected_outcome": "FAIL",
+      "got_outcome": "FAIL",
+      "expected_review": true,
+      "got_review": true,
+      "reasons": [
+        "CGPA_BELOW_MIN",
+        "NAME_UNREADABLE",
+        "ID_UNREADABLE"
+      ],
+      "doc_statuses": {
+        "id_card": "insufficient_text",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    },
+    {
+      "case_id": 20,
+      "expected_outcome": "NEEDS_REVIEW",
+      "got_outcome": "NEEDS_REVIEW",
+      "expected_review": true,
+      "got_review": true,
+      "reasons": [
+        "CGPA_OUT_OF_RANGE"
+      ],
+      "doc_statuses": {
+        "id_card": "ok",
+        "transcript": "ok",
+        "degree": "ok"
+      }
+    }
+  ],
+  "field_mismatches": []
+}

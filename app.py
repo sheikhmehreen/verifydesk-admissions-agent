@@ -5,7 +5,7 @@ import streamlit as st
 st.set_page_config(page_title="VerifyDesk", page_icon="📄", layout="centered")
 
 # Streamlit Community Cloud secrets are copied server-side into environment variables.
-for _key in ("GROQ_API_KEY", "SUPABASE_URL", "SUPABASE_SECRET_KEY"):
+for _key in ("GROQ_API_KEY", "SUPABASE_URL", "SUPABASE_SECRET_KEY", "SAVE_RESULTS"):
     if not os.getenv(_key):
         try:
             value = st.secrets.get(_key)
@@ -18,6 +18,7 @@ from database import DBError, save_application
 from rule_checker import MIN_CGPA, MIN_YEARS
 from workflow import process_application
 
+SAVE_RESULTS = os.getenv("SAVE_RESULTS", "true").strip().lower() != "false"
 MAX_RUNS_PER_SESSION = 10
 MAX_FILE_BYTES = 5 * 1024 * 1024
 SLOTS = [
@@ -81,7 +82,9 @@ def show(pipeline, saved_id=None, save_error=None):
     if saved_id:
         st.caption(f"Saved successfully. Application ID: {saved_id}")
     elif save_error:
-        st.warning(f"The result is shown but could not be saved: {save_error}")
+        st.warning(f"The result could not be saved: {save_error}")
+    elif not SAVE_RESULTS:
+        st.caption("Demo mode: nothing was stored.")
 
 
 st.title("VerifyDesk")
@@ -89,7 +92,16 @@ st.caption(
     "Synthetic admissions-document verification demo. "
     "This is not a real admissions decision."
 )
-st.warning("Use fake synthetic documents only. Uploaded files and results may be stored in a private database.")
+if SAVE_RESULTS:
+    st.warning(
+        "Upload fake (synthetic) documents only. Files and results are stored in a "
+        "private database. Document text is sent to an AI service (Groq) for extraction."
+    )
+else:
+    st.warning(
+        "Upload fake (synthetic) documents only. Document text is sent to an AI service "
+        "(Groq) for extraction. Demo mode: nothing you upload is stored."
+    )
 
 uploads = {
     key: st.file_uploader(
@@ -131,10 +143,11 @@ if st.button("Check application", type="primary"):
             st.error("Processing failed. Check the app logs and configuration; no result was saved.")
         else:
             saved_id, save_error = None, None
-            try:
-                saved_id = save_application(files, pipeline)
-            except DBError as exc:
-                save_error = str(exc)
+            if SAVE_RESULTS:
+                try:
+                    saved_id = save_application(files, pipeline)
+                except DBError as exc:
+                    save_error = str(exc)
             st.session_state.last_result = (pipeline, saved_id, save_error)
 
 if "last_result" in st.session_state:

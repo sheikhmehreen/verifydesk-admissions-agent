@@ -48,3 +48,17 @@ class ExtractResult(BaseModel):
     needs_review: bool
     detail: str = ""
     dropped_fields: list[str] = Field(default_factory=list)
+
+class DocReport(BaseModel):
+    read_status: str
+    read_method: str = "none"
+    extract_status: Optional[str] = None
+    needs_review: bool = False
+    detail: str = ""
+    fields: Fields = Field(default_factory=Fields)
+    evidence: dict[str, str] = Field(default_factory=dict)
+
+
+class PipelineResult(BaseModel):
+    result: Result
+    docs: dict[str, DocReport] = Field(default_factory=dict)

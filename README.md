@@ -115,7 +115,6 @@ SAVE_RESULTS = "false"
 - No login and no per-user isolation. The session cap is a demo guard, not security.
 - The Supabase secret key bypasses RLS and must stay in trusted server-side secrets.
 - Prompt-injection testing is not yet part of the evaluation.
-- Scanned-file OCR on the hosted app has not been verified yet.
 - Production authentication, retention, auditing, and a human-review console are not implemented.
 - The rules and thresholds are invented and must not be used for real admissions.
 

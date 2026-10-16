@@ -60,6 +60,7 @@ Outcome correct 20/20, review flag correct 20/20, false passes 0, uncertain case
 field accuracy 203/203, documents with all fields correct 55/55, unexpected values 0.
 These results come from a small, clean, synthetic set that was used during development.
 They are not evidence of real-world accuracy.
+Reproduce with python evaluate.py (needs GROQ_API_KEY and Tesseract; takes several minutes).
 
 ## Run locally
 

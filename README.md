@@ -73,3 +73,50 @@ The app uses `SUPABASE_SECRET_KEY` only server-side to write to the database and
 ## Quality checks
 
 GitHub Actions runs Python compilation and `pytest` for pushes to `main` and pull requests targeting `main`.
+
+## Live demo
+**https://verifydesk-admissions-agent-ceouz44eamwdx2ftwfreea.streamlit.app/**
+Synthetic documents only. The public app runs in demo mode, which skips the save step.
+The first load may be slow because free apps sleep after inactivity.
+
+## Try it
+Download sample files from [`data/cases/`](data/cases) and upload all three documents from one folder:
+
+| Folder | Expected result |
+|---|---|
+| case_01 | PASS |
+| case_07 | FAIL (CGPA below 2.5) |
+| case_15 | NEEDS_REVIEW (name mismatch) |
+| case_17 | NEEDS_REVIEW (blurry ID image) |
+
+## Architecture
+```
+Streamlit upload
+  -> document_reader  (PyMuPDF text; Tesseract OCR fallback; type and size checks)
+  -> extractor        (Groq JSON -> Pydantic -> grounding check against the text)
+  -> rule_checker     (plain Python rules; the LLM never decides the outcome)
+  -> workflow guard   (any processing problem blocks PASS)
+  -> result card; optional save to Supabase (Postgres + private Storage)
+```
+
+## Configuration
+| Variable | Purpose |
+|---|---|
+| GROQ_API_KEY | LLM extraction |
+| SAVE_RESULTS | "false" = demo mode, no saving (default "true") |
+| SUPABASE_URL, SUPABASE_SECRET_KEY | only needed when saving is on |
+
+## Evaluation (20 synthetic cases)
+Outcome correct 20/20, review flag correct 20/20, false passes 0, uncertain cases routed to review 7/7,
+field accuracy 203/203, documents with all fields correct 55/55, unexpected values 0.
+These results come from a small, clean, synthetic set that was used during development.
+They are not evidence of real-world accuracy. Reproduce with `python evaluate.py`.
+
+## Privacy and limitations
+- Synthetic documents only. Do not upload real personal data.
+- Document text is sent to Groq for extraction. Review Groq's current data terms.
+- With saving on, files go to a private Supabase bucket. Demo mode skips the save step.
+- It checks consistency, not authenticity. Forged documents are not detected.
+- No login and no per-user isolation. The session cap is a demo guard, not security.
+- Prompt-injection testing is not yet part of the evaluation.
+- The rules and thresholds are invented and must not be used for real admissions.

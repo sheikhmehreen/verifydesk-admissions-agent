@@ -18,6 +18,7 @@ Download sample files from [`data/cases/`](data/cases) and upload all three docu
 | Folder | Expected result |
 |---|---|
 | case_01 | PASS |
+| case_05 | PASS (scanned PNGs, uses OCR) |
 | case_07 | FAIL (CGPA below 2.5) |
 | case_15 | NEEDS_REVIEW (name mismatch) |
 | case_17 | NEEDS_REVIEW (blurry ID image) |
